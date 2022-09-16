@@ -1,0 +1,57 @@
+{
+  "version": "2.0.1",
+  "name": "Califill",
+  "manifest_version": 2,
+  "description": "",
+  "browser_action": {
+    "default_title": "Califill",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "img/16x16.png",
+    "48": "img/48x48.png",
+    "128": "img/128x128.png"
+  },
+  "externally_connectable": {
+    "matches": ["https://auth.aiosolutions.co/auth/discord/activate*"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/forms/*"],
+      "js": [
+        "modules/gforms.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": ["https://www.supremenewyork.com/*", "https://supremenewyork.com/*", "https://www.bestbuy.com/checkout/r/*"],
+      "js": [
+        "modules/supremeregions.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "css": [
+        "css/toastify.min.css"
+      ],
+      "js": [
+        "js/jquery.min.js",
+        "js/toastify-js.js",
+        "modules/aio.js",
+        "modules/discord.js",
+        "modules/shopifybackend.js",
+        "modules/clipboardListener.js",
+        "modules/diy.js",
+        "modules/v2.js",
+        "modules/run.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [ "contextMenus", "management", "tabs", "storage", "webRequest", "webRequestBlocking", "<all_urls>", "clipboardRead" ],
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src https://auth.aiosolutions.co https://role.aiosolutions.co:9000 http://localhost:3000 https://localhost:3000 https://discordapp.com; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:; font-src *;"
+}
